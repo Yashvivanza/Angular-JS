@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body ng-app="mainApp">
+
+<div ng-controller="FactoryController">
+   <h2>Factory Example</h2>
+   Enter two numbers: 
+   <input type="number" ng-model="num1"> 
+   <input type="number" ng-model="num2">
+   <button ng-click="multiply()">Multiply</button>
+
+   <p>Result: {{ result }}</p>
+</div>
+
+<script>
+var app = angular.module("mainApp", []);
+
+// FACTORY
+app.factory('MathFactory', function() {
+   var factory = {};
+   factory.multiply = function(a, b) {
+      return a * b;
+   }
+   return factory;
+});
+
+// CONTROLLER
+app.controller("FactoryController", function($scope, MathFactory) {
+   $scope.multiply = function() {
+      $scope.result = MathFactory.multiply($scope.num1, $scope.num2);
+   }
+});
+</script>
+
+</body>
+</html>
