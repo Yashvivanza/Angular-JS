@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body ng-app="mainApp">
+
+<div ng-controller="ServiceController">
+   <h2>Service Example</h2>
+   Enter number: <input type="number" ng-model="num">
+   <button ng-click="findSquare()">Find Square</button>
+
+   <p>Result: {{ result }}</p>
+</div>
+
+<script>
+var mainApp = angular.module("mainApp", []);
+
+// SERVICE
+mainApp.service('CalcService', function() {
+   this.square = function(a) {
+      return a * a;
+   }
+});
+
+// CONTROLLER
+mainApp.controller("ServiceController", function($scope, CalcService) {
+   $scope.findSquare = function() {
+      $scope.result = CalcService.square($scope.num);
+   }
+});
+</script>
+
+</body>
+</html>
