@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-app="mainApp">
+  <div ng-controller="shapeController">
+    <p>{{ message }} | {{ type }}</p>
+    
+    <div ng-controller="circleController">
+      <p>{{ message }} | {{ type }}</p>
+    </div>
+  </div>
+</div>
+
+<script>
+var mainApp = angular.module("mainApp", []);
+mainApp.controller("shapeController", function($scope) {
+  $scope.message = "In Shape Controller";
+  $scope.type = "Shape";
+});
+mainApp.controller("circleController", function($scope) {
+  $scope.message = "In Circle Controller"; // overrides parent message
+});
+</script>
+
+</body>
+</html>
